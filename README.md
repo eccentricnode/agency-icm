@@ -221,12 +221,4 @@ Root files:
 
 ---
 
-## Submission Writeup (Comp #4)
-
-> Built a 4-person real estate team's AI operating system as five ICM folders plus three root files (`README`, `INTAKE`, `HANDOFF_SCHEMA`). Every handoff carries a typed envelope with a stable `case_id` and a `back_to` field, so the transaction coordinator can hand a deadline-slip back to the communication specialist as a normal operation. One design decision: the envelope schema lives in one root file referenced by every `handoff.md` so it cannot drift. With another week I would ship a real `voice/` directory with three live agent samples and a `cases/` convention so case state lives somewhere named.
-
-(100 words.)
-
----
-
 *Built for [Jake van Clief's CliffNotes Weekly Competition #4 — The Agency](https://www.skool.com/cliffnotes), May 2026. Architecture pattern: Interpretable Context Methodology (ICM), Jake-pure. License: MIT.*
