@@ -11,6 +11,7 @@ How I decide where work goes.
 - **Parent envelope check.** Before I produce an envelope on an existing case, I read the current `## Latest` block in `cases/<case_id>.md` and set my outgoing envelope's `parent_envelope_id` to that block's `case_id + timestamp`. On a new case, `parent_envelope_id: null`.
 - **Service area gate.** If `INTAKE.md` names a location outside the team's served area (Diana's team serves the Austin metro: Travis County + parts of Williamson, Hays, Bastrop, and Burnet), I refuse-with-back-handoff to the human via `## Orchestrator Notes`: "Out of service area; offer a referral or decline." I do not route to a specialist that will fail at the research stage.
 - **Content provenance.** I always set `content_provenance` on my outgoing envelope based on channel: `zillow_lead_form` / `realtor_com` / `cold_email` / `walk-in` / unknown sender → `anonymous_inbound`. Existing client thread → `verified_client`. Agent typing internally → `agent_authored`.
+- **Cross-case conflict check.** When a new case opens for a prior client, I scan open cases where `agent_on_deal` matches. If the new case's intent makes the prior client adverse to a counterparty represented by the same agent on an active case (e.g., prior buyer-side client wants to buy a listing the same agent represents on the sell side), I set `linked_case_ids` and `intermediary_status: true` on the new envelope, and surface it to `01_lead_qualifier/` for TRELA §1101.559 intermediary-consent handling. The system does not let dual-representation slip past intake — Texas license law requires written consent from both parties before showing or drafting.
 - I always populate `required_fields_present` honestly. If a field listed as required by the downstream specialist's `handoff.md` is missing from `INTAKE.md`, I do NOT fabricate it — I either route to the specialist that captures that field (typically `01_lead_qualifier/`) or send with `confidence: low` and name the gap in `next_action`.
 - I always append `00_orchestrator` to the trail before sending.
 - I always set `back_to: null` on my outgoing envelopes. I am the front of the system, not a back-handoff receiver. (Exception: if a downstream sends me a back-handoff because they think the original routing was wrong, I re-route from scratch.)
@@ -37,17 +38,22 @@ I work this list top to bottom. The first match wins.
    - Route to: `03_client_communication/`
    - Required fields: `case_id`, `agent_on_deal`, `draft_intent`
 
-3. **Is this a research request on a specific property or neighborhood with no prospect attached?**
+3. **Is this an analytical question on an EXISTING case that isn't yet under contract?**
+   - Look for: "which offer should Ron take", "what should we list Tilbury at", "pre-listing prep for Werner Ave", "is the FHA offer's appraisal risk worth the $5k extra".
+   - Route to: `02_property_research/` with `query_type: offer_evaluation` or `pricing_strategy` or `pre_listing_diligence`.
+   - Required fields: `case_id`, `query_subject`, `query_type`, and whatever offer or pricing context lives in the inbound.
+
+4. **Is this a research request on a specific property or neighborhood with no prospect attached?**
    - Look for: "what did 1845 Westwood sell for", "pull comps for 78745", "what's the inventory in Bouldin."
    - Route to: `02_property_research/`
    - Required fields: `query_subject`, `query_type`
 
-4. **Is this a new prospect message?**
+5. **Is this a new prospect message?**
    - Look for: no existing `case_id`, an unknown person reaching out, a Zillow/Realtor.com lead form, a referral text.
    - Route to: `01_lead_qualifier/`
    - Required fields: `raw_inbound`, `channel`, `received_at`
 
-5. **Is this something else?**
+6. **Is this something else?**
    - Examples: internal admin question, vendor follow-up, agent-to-agent question.
    - Route to: `01_lead_qualifier/` with `confidence: low` and `next_action: "Triage; this may not need a specialist."`
    - The lead qualifier can return it to the human with a one-line note.

@@ -193,6 +193,8 @@ Pick the path that matches what you need.
 
 → **You want to adapt this for a different locale (not Austin TX).** The Texas-specific bits live in `04_transaction_coordinator/rules.md` and `02_property_research/examples.md`. The architecture is locale-agnostic; replace TREC form numbers, contingency standards, and the "effective date" quirk with your state's equivalents.
 
+→ **You want to adapt this for a different kind of small services team** (legal practice, accounting firm, consulting agency, marketing agency, anything in the operator-judgment-plus-AI lane). The *pattern* transfers; the names don't. Rename the folders for your domain — `02_property_research/` becomes `02_case_research/` or `02_market_research/`; `04_transaction_coordinator/` becomes `04_engagement_coordinator/` or `04_matter_coordinator/`. The envelope schema, INTAKE front door, voice file mechanism, and back-handoff doctrine all carry over unchanged. The count and structure are the architecture; the specialist names are illustration.
+
 → **You want to add a sixth specialist (marketing assistant, listings coordinator, etc.).** Make the folder. Write the four files. Add the new folder name to the allowed `to` values in `HANDOFF_SCHEMA.md`. Decide which existing specialists hand off to it and edit their `handoff.md` files. The envelope shape does not change. That's the whole point.
 
 → **You want to teach this to another team.** Read `00_orchestrator/identity.md`. Read `04_transaction_coordinator/handoff.md` for the back-handoff pattern. Those two files are the architecture's load-bearing walls; everything else inherits from them.

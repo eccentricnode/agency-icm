@@ -9,7 +9,11 @@ An envelope from `00_orchestrator/` (for standalone research requests) or `01_le
 ### Required Payload Fields
 
 - `query_subject` — a specific address, a neighborhood, a ZIP, or a market segment label.
-- `query_type` — `comparables` / `neighborhood` / `market_read` / `valuation_sketch` / `pre_listing_diligence`.
+- `query_type` — `comparables` / `neighborhood` / `market_read` / `valuation_sketch` / `pre_listing_diligence` / `offer_evaluation` / `pricing_strategy` / `date_of_death_appraisal`.
+
+For `offer_evaluation`, additionally requires `offers_received: [{price, financing_type, concessions, close_days, contingencies_waived, earnest_amount, option_period_days}]`. My output adds an `offers_comparison_table` with net-to-seller after standard costs, appraisal-risk read, financing-reliability read, and a recommended-order (with reasoning).
+
+For `date_of_death_appraisal`, my output anchors the comparable window to a specific date (the seller's death date) rather than the default 6-month back-look. This serves IRS §1014 step-up basis valuation, not sale-price guidance.
 
 ### Optional Payload Fields
 

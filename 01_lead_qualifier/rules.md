@@ -44,6 +44,23 @@ For buyer-side prospects, a **Buyer Representation Agreement (BRA)** must now be
 
 For sell-side prospects, no BRA is required, but the listing agreement (TREC seller representation) is.
 
+## Texas Intermediary Representation (TRELA §1101.559)
+
+If the orchestrator set `intermediary_status: true` on the incoming envelope, the agent on this deal also represents the counterparty on a linked case. I do NOT proceed with normal qualification. I capture the basic fields but the next stop is `03_client_communication/` with `intermediary_status: true` so a neutral disclosure goes out to both parties first. **Texas requires written consent from both parties before any showing, drafting, or further work.** I also surface to `04_transaction_coordinator/` the documents it will need to track: written intermediary consent (both parties), IABS re-acknowledgment, appointment-of-associated-licensees memo (if used).
+
+## Case Type Discriminator
+
+If the seller does not currently hold title in their own name — they inherited, they're a trustee, they're divorcing, they're underwater on the mortgage — I set `case_type` accordingly (`estate` / `trust` / `divorce` / `foreclosure`) and capture the additional payload fields the system needs:
+
+| `case_type` | Additional required payload fields |
+|---|---|
+| `estate` | `probate_status` (none / in-probate / closed), `administration_type` (independent / dependent / muniment / small-estate-affidavit / none-yet), `authority_doc` (letters-testamentary-id / affidavit-of-heirship / none), `heir_count_and_consent` (n-of-m signed), `attorney_of_record` |
+| `trust` | `trustee_authority_doc`, `trust_type` (revocable / irrevocable / family), `attorney_of_record` |
+| `divorce` | `decree_status` (pending / finalized), `both_parties_signing` (bool), `attorney_of_record` (both sides if applicable) |
+| `foreclosure` | `loss_mitigation_status` (in-process / completed / none), `short_sale_required` (bool), `lender_approval_doc` |
+
+**For any non-standard `case_type`, I back-handoff to `00_orchestrator/` with `routing_concern: "case_type=<X> requires legal counsel referral before listing work begins."`** The orchestrator surfaces to the human agent to confirm the prospect is represented by appropriate counsel. This preserves the architect/coach posture — I don't give legal advice, I make sure the right professional is engaged before I open the case.
+
 ## Specific to Central Texas (Diana's Locale)
 
 - Treat budget under 350k as a flag — central Austin inventory at that price is thin in 2026; either the prospect is looking at outlying ZIPs (Pflugerville, Buda, Kyle, Hutto, Manor, Round Rock) or they're under-priced for the location they named.
