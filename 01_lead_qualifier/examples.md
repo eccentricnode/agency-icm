@@ -33,21 +33,22 @@ Gaps:
 |---|---|
 | case_id | CASE-2026-0143 |
 | from | 01_lead_qualifier |
-| to | 03_client_communication |
+| to | 02_property_research |
 | back_to | null |
 | timestamp | 2026-05-11T09:22:00-05:00 |
 | agent_on_deal | Diana |
 | confidence | high |
-| next_action | Draft first reply: confirm 1845 Westwood availability, propose a showing, ask about pre-approval and current housing, name 78704 + 78745 as likely zones given schools criterion. |
+| next_action | Pull comparables for 1845 Westwood and the 78704/78745 neighborhood given the schools criterion; the brief feeds the first reply. |
 | trail | 00_orchestrator → 01_lead_qualifier |
 
 ### JSON Form
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0143",
   "from": "01_lead_qualifier",
-  "to": "03_client_communication",
+  "to": "02_property_research",
   "back_to": null,
   "timestamp": "2026-05-11T09:22:00-05:00",
   "agent_on_deal": "Diana",
@@ -67,7 +68,7 @@ Gaps:
   },
   "required_fields_present": ["prospect_name", "intent", "budget", "timeline", "location", "constraints", "prior_relationship", "gaps"],
   "confidence": "high",
-  "next_action": "Draft first reply: confirm 1845 Westwood availability, propose a showing, ask about pre-approval and current housing, name 78704 + 78745 as likely zones given schools criterion.",
+  "next_action": "Pull comparables for 1845 Westwood and the 78704/78745 neighborhood given the schools criterion; the brief feeds the first reply.",
   "trail": ["00_orchestrator", "01_lead_qualifier"]
 }
 ```
@@ -106,6 +107,7 @@ Gaps:
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0144",
   "from": "01_lead_qualifier",
   "to": "03_client_communication",

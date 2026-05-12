@@ -14,7 +14,7 @@ An envelope from `00_orchestrator/` on three kinds of triggers:
 
 | Inquiry | Required fields |
 |---|---|
-| `open_case` | `case_id`, `contract_document_reference`, `executed_dates`, `communication_date`, `purchase_price`, `earnest_money_amount`, `option_period_days`, `option_fee_amount`, `closing_date` |
+| `open_case` | `case_id`, `contract_document_reference`, `executed_dates`, `communication_date`, `purchase_price`, `earnest_money_amount`, `option_period_days`, `option_fee_amount`, `closing_date`, `financing_type` (`conventional` / `FHA` / `VA` / `cash` / other) |
 | `status` | `case_id`, `inquiry_type` |
 | `state_change` | `case_id`, `inquiry_type`, `change_payload` |
 

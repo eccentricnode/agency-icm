@@ -74,3 +74,12 @@ Everything downstream depends on what gets pasted here. Garbage in, predictable 
 ## New Request
 
 <!-- Paste the next inbound request below this line. Delete the worked example above when you're ready to use this for real. -->
+
+---
+
+## Orchestrator Notes
+
+<!-- The orchestrator writes here when it cannot process a request. Examples: raw_inbound was missing, channel was ambiguous, two routings were equally plausible. The human reads this section first thing in the morning. -->
+
+<!-- Example: "2026-05-12 08:00 — INTAKE had no Channel line and the message body referenced 'the Wendover place' without a stable identifier. Need either a case_id or a date/agent who fielded this." -->
+

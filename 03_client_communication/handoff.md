@@ -29,7 +29,7 @@ An envelope from one of:
 - Missing `agent_on_deal` → back-handoff to sender; I cannot draft in no-voice.
 - Missing `case_id` → back-handoff; case context is required.
 - Missing `draft_intent` → I produce a generic outreach and flag `confidence: low`; agent decides.
-- Missing voice file for the named agent → back-handoff to `00_orchestrator/` with `routing_concern: "no voice file for <agent>; need onboarding."`
+- Missing voice file for the named agent → graceful degrade. Draft in house voice (`voice/EXAMPLE_voice_diana.md` baseline), `confidence: low`, `do_not_send_yet: ["voice not captured for <agent>"]`, plus a secondary envelope to `00_orchestrator/` tagged `payload.onboarding_gap` so the missing voice gets captured async. Never block on missing voice.
 
 ## What I Produce
 

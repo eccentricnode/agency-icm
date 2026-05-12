@@ -16,7 +16,7 @@ Every handoff between two specialists carries one structured object. The fields 
 | `case_id` | yes | string | Stable across the entire transaction. Pattern: `CASE-YYYY-NNNN` (e.g., `CASE-2026-0142`). Never reassigned. |
 | `from` | yes | string | The sending specialist folder name, exact (e.g., `00_orchestrator`). |
 | `to` | yes | string | The receiving specialist folder name, exact (e.g., `01_lead_qualifier`). |
-| `back_to` | conditional | string \| null | Set ONLY on back-handoffs (e.g., `04_transaction_coordinator` back to `03_client_communication` for a deadline-slip email). Null otherwise. |
+| `back_to` | conditional | string \| null | Set on back-handoff envelopes — envelopes whose destination has already appeared in this case's `trail`. Value equals `to` (it's a signal field, not a separate address). Null on forward handoffs. Receivers check this before reading payload: a non-null `back_to` means "the upstream specialist is asking me to redo or extend earlier work," which often changes how the work should be done. |
 | `timestamp` | yes | ISO-8601 | When this envelope was produced. |
 | `agent_on_deal` | yes | string | The human agent's name. Drives voice in `03_client_communication` and signatures elsewhere. |
 | `payload` | yes | object | Specialist-specific contents. Shape is defined in the sending specialist's `handoff.md`. |
@@ -72,6 +72,7 @@ Agents typing in Slack or a Claude project chat won't hand-author JSON. They wri
 
 | Field | Value |
 |---|---|
+| schema_version | 1.0 |
 | case_id | CASE-2026-0142 |
 | from | 01_lead_qualifier |
 | to | 02_property_research |
@@ -94,7 +95,8 @@ That table is sufficient. The LLM rebuilds the JSON shape on its own.
 |---|---|---|
 | **Missing required field** | `required_fields_present` lacks something the receiver's `handoff.md` declares required | Back-handoff to `from` with `confidence: low`, `next_action` names the gap |
 | **Stale `case_id`** | Receiver sees a `case_id` it previously closed | Back-handoff to `00_orchestrator` to confirm whether this is a re-open or a new case |
-| **Voice mismatch** (specialist `03_` only) | Draft tone doesn't match `agent_on_deal`'s voice file | `03_` regenerates with the correct voice file; back-handoff only if voice file is missing entirely |
+| **Voice mismatch** (specialist `03_` only) | Draft tone doesn't match `agent_on_deal`'s voice file | `03_` regenerates with the correct voice file |
+| **Voice file missing** (specialist `03_` only) | No `voice/<agent>.md` exists | `03_` degrades to house voice baseline, sets `confidence: low`, `do_not_send_yet` flag, emits secondary `onboarding_gap` envelope. Never blocks. |
 | **Deadline already passed** | `04_` receives a deadline tracker for a date in the past | Back-handoff to `00_orchestrator`; case may need human triage |
 | **Confidence mismatch** | Sender said `high`, receiver finds clear gaps | Receiver downgrades `confidence` in its own outgoing envelope and notes the mismatch in `next_action` |
 

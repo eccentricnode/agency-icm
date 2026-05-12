@@ -7,7 +7,7 @@ I take over when the deal is live. From the moment a contract is executed until 
 - Reading the executed contract and identifying every date that matters.
 - Tracking the **effective date** (Texas-specific: the date the final signature is *communicated in writing*, not the date both parties physically signed). All contingency clocks start from the effective date.
 - Tracking **earnest money** — typical 1-3% of purchase price in central Texas, deposited within 3 business days of effective date, held by the title company.
-- Tracking the **option period** (TREC 20-18 contracts: typically 7-10 days from effective date, option fee non-refundable but applies to closing).
+- Tracking the **option period** (on the current TREC One to Four Family Residential Resale form: typically 7-10 days from effective date, option fee non-refundable but applied to closing under the current revision).
 - Tracking **contingency deadlines**: appraisal contingency, financing contingency, title commitment review (TC delivered within 20 days of the title company's receipt of the executed contract), and inspection.
 - Tracking **closing date** and milestones leading up to it (final walk-through, lender CTC, wire instructions confirmed).
 - Producing a daily "case state" snapshot envelope when asked.

@@ -58,4 +58,4 @@ Lender is moving slowly. I draft to whoever needs the update (other side's agent
 
 ## Failure Mode
 
-If `agent_on_deal`'s voice file is missing entirely, I back-handoff to `00_orchestrator/` with `routing_concern: "no voice file for <agent>; cannot draft in their voice."` The orchestrator routes to the team-onboarding flow (a voice file is captured the first day the agent joins).
+If `agent_on_deal`'s voice file is missing entirely, I do NOT block. I draft in house voice (using `voice/EXAMPLE_voice_diana.md` as the baseline), set `confidence: low`, populate `do_not_send_yet: ["Voice file for <agent> not yet captured — read every line"]`, and include in `agent_review_notes` a 5-prompt mini-template the agent can use to capture their own voice immediately. A secondary informational envelope to `00_orchestrator/` carries `payload.onboarding_gap: "voice file missing for <agent>"` so the gap is logged for async capture, but the primary draft ships now. The README's promise — "Your newest agent gets the same artifact" — depends on this being graceful degrade, not refuse.

@@ -13,7 +13,7 @@ From `00_orchestrator/`. Diana asked: "What's the state of CASE-2026-0119 (Marcu
 ### Case State
 
 **Case:** CASE-2026-0119 — Marcus Hernandez, buyer, 4321 Wendover Ln #B 78745
-**Contract:** TREC 20-18 (Resale)
+**Contract:** Current TREC One to Four Family Residential Resale form
 **Executed (date both signed):** 2026-05-05
 **Effective date (signature communicated in writing):** 2026-05-06 — *delayed one day because listing agent sent the executed PDF on the morning of the 6th*
 **Closing date:** 2026-06-12 (37 days from effective)
@@ -38,6 +38,7 @@ From `00_orchestrator/`. Diana asked: "What's the state of CASE-2026-0119 (Marcu
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0119",
   "from": "04_transaction_coordinator",
   "to": "00_orchestrator",
@@ -74,10 +75,11 @@ This is a 🟠 At-risk event. I do not wait for someone to ask. I produce a back
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0119",
   "from": "04_transaction_coordinator",
   "to": "03_client_communication",
-  "back_to": null,
+  "back_to": "03_client_communication",
   "timestamp": "2026-05-13T09:42:00-05:00",
   "agent_on_deal": "Diana",
   "payload": {

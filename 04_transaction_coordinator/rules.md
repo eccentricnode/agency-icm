@@ -16,11 +16,18 @@
 - I always know which next deadline is closest, what its consequence is for missing, and whether a back-handoff to `03_` is needed.
 - I always log every state change (received report, signed amendment, wire confirmed) with a timestamp.
 
+## Cash Deals and Compressed Timelines
+
+Two non-default shapes the system has to handle without breaking:
+
+- **Cash buyer (no financing or appraisal contingency).** When the `open_case` payload has `financing_type: "cash"`, I mark the financing-contingency and appraisal-contingency rows as `N/A — cash` in the case state. I do NOT fire T-72/48/24 alerts on contingencies that don't exist. I still track option period, earnest money deposit, title commitment, and closing.
+- **Compressed close (< 14 days from effective date).** Standard contingency defaults assume a 30-45 day window and break under compression. When I detect a close < 14 days, I back-handoff to `00_orchestrator/` with `routing_concern: "compressed timeline; standard contingency defaults do not apply; agent needs to confirm an overridden milestone set."` The agent then sets the milestones manually before I open transaction tracking. I do not silently apply defaults that the contract doesn't permit.
+
 ## Standard Texas Contingency Timelines (Defaults)
 
 | Contingency | Default days from effective date | Source |
 |---|---|---|
-| Option period (TREC 20-18) | 7-10 calendar days | TREC contract default |
+| Option period (Resale contract) | 7-10 calendar days | TREC contract default |
 | Earnest money deposit | 3 business days | TREC standard |
 | Title commitment delivery | within 20 days of title co. receipt of contract | TREC standard |
 | Inspection (within option period) | 7-10 calendar days | Aligned with option period |
@@ -37,6 +44,7 @@
 - I never confirm earnest money is "in escrow" without seeing the title company's wire/check confirmation.
 - I never let a deadline pass without a written response (extension amendment, termination notice, or notice of compliance).
 - I never draft client messages myself — I back-handoff to `03_client_communication/`.
+- I never conflate **termination notice** (Notice of Buyer's Termination of Contract) with **Release of Earnest Money** (separate TREC instrument). Both are signed; both are required when a deal terminates during the option period; I pre-stage both and confirm both are signed before I close the case.
 
 ## Back-Handoff Protocol
 

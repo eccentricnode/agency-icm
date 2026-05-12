@@ -48,6 +48,7 @@ Two worked routing examples. Each shows the raw inbound, my reasoning, and the e
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0143",
   "from": "00_orchestrator",
   "to": "01_lead_qualifier",
@@ -90,6 +91,7 @@ Two worked routing examples. Each shows the raw inbound, my reasoning, and the e
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0119",
   "from": "00_orchestrator",
   "to": "04_transaction_coordinator",
@@ -104,7 +106,7 @@ Two worked routing examples. Each shows the raw inbound, my reasoning, and the e
     ],
     "asker": "Marcus (buyer)"
   },
-  "required_fields_present": ["inquiry_type", "questions"],
+  "required_fields_present": ["inquiry_type"],
   "confidence": "high",
   "next_action": "Pull current status on appraisal and option period for CASE-2026-0119. If a client-facing reply is needed, back-handoff to 03_client_communication after status is confirmed.",
   "trail": ["00_orchestrator"]

@@ -58,6 +58,7 @@ A 3BR in this comparable set under 550k will likely be ≤1,580 sqft or need fou
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0143",
   "from": "02_property_research",
   "to": "03_client_communication",
@@ -76,7 +77,7 @@ A 3BR in this comparable set under 550k will likely be ≤1,580 sqft or need fou
       "South Lamar weekend traffic adds noise within 4 blocks; foundation movement common on 1940s-1960s pier-and-beam, budget $3-8k.",
       "1845 Westwood is squarely in the Westwood pocket — same school zone as Bouldin proper, quieter."
     ],
-    "trec_form_implied": "TREC 20-18 (One to Four Family Residential — Resale)",
+    "trec_form_implied": "Current TREC One to Four Family Residential — Resale form",
     "sources_named": ["MLS closed-sale", "GreatSchools 2026-Q1", "AISD attendance"]
   },
   "required_fields_present": ["brief_subject", "comparable_count", "agent_pull_quotes", "sources_named"],
@@ -112,6 +113,7 @@ A 3BR in this comparable set under 550k will likely be ≤1,580 sqft or need fou
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0144",
   "from": "02_property_research",
   "to": "03_client_communication",

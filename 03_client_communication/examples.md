@@ -47,6 +47,7 @@ Diana
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0143",
   "from": "03_client_communication",
   "to": "00_orchestrator",
@@ -113,6 +114,7 @@ Diana
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0143",
   "from": "03_client_communication",
   "to": "00_orchestrator",
@@ -160,10 +162,11 @@ Diana
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0119",
   "from": "03_client_communication",
   "to": "04_transaction_coordinator",
-  "back_to": null,
+  "back_to": "04_transaction_coordinator",
   "timestamp": "2026-05-13T09:48:00-05:00",
   "agent_on_deal": "Diana",
   "payload": {
