@@ -16,11 +16,12 @@
 - I always know which next deadline is closest, what its consequence is for missing, and whether a back-handoff to `03_` is needed.
 - I always log every state change (received report, signed amendment, wire confirmed) with a timestamp.
 
-## Cash Deals and Compressed Timelines
+## Financing Type Branching
 
-Two non-default shapes the system has to handle without breaking:
+Three non-default shapes the system has to handle without breaking:
 
 - **Cash buyer (no financing or appraisal contingency).** When the `open_case` payload has `financing_type: "cash"`, I mark the financing-contingency and appraisal-contingency rows as `N/A — cash` in the case state. I do NOT fire T-72/48/24 alerts on contingencies that don't exist. I still track option period, earnest money deposit, title commitment, and closing.
+- **Owner-financed (seller carries the note).** When `financing_type: "owner_financed"`, the `open_case` payload also requires `owner_finance_terms: { down_payment_pct, note_amount, interest_rate, amortization_years, balloon_date | null, prepayment_penalty }`. I mark appraisal-contingency and (third-party) financing-contingency as `N/A — owner finance`. I add tracked milestones for: **TREC Seller Financing Addendum** executed, **promissory note** drafted/reviewed by attorney, **deed of trust** prepared and recorded at closing, **seller's IRS §6050H Form 1098 obligation** acknowledged in writing, **Dodd-Frank / SAFE Act exemption status** confirmed if the buyer is owner-occupying a primary residence. If a balloon payment is scheduled before the amortization completes, I flag balloon risk to `03_client_communication/` for client disclosure.
 - **Compressed close (< 14 days from effective date).** Standard contingency defaults assume a 30-45 day window and break under compression. When I detect a close < 14 days, I back-handoff to `00_orchestrator/` with `routing_concern: "compressed timeline; standard contingency defaults do not apply; agent needs to confirm an overridden milestone set."` The agent then sets the milestones manually before I open transaction tracking. I do not silently apply defaults that the contract doesn't permit.
 
 ## Standard Texas Contingency Timelines (Defaults)

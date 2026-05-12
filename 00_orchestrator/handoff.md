@@ -41,10 +41,13 @@ I do NOT add fields the destination doesn't list. I do NOT skip fields the desti
 
 | Failure | What I do |
 |---|---|
+| Unknown `schema_version` on an incoming back-handoff | Refuse; write to `## Orchestrator Notes`: "Envelope with `schema_version=<X>` does not match current `1.0`; case needs review." |
 | `INTAKE.md` is missing a `### Raw Inbound` section | I do not produce an envelope. I write a note back into `INTAKE.md`'s `## Orchestrator Notes` section asking the human to paste the actual inbound. |
+| Location named is outside the team's service area | I do not route to a specialist. I write to `## Orchestrator Notes`: "Out of service area — offer a referral or decline." |
 | Two specialists could plausibly handle this | I route to `01_lead_qualifier/` with `confidence: low`. The lead qualifier is the closest thing to a human triage step the system has. |
 | A required field for the chosen destination is missing from `INTAKE.md` | I either re-route to a specialist that captures that field first, or I send with `confidence: low` and name the gap in `next_action`. |
 | A downstream specialist back-handoffs me with "wrong routing" | I read their feedback in `next_action`, re-route from scratch, and append both `00_orchestrator` entries to the trail (the second one for the re-route). |
+| Case file `## Latest` block changed between my read and write (`parent_envelope_id` mismatch flagged downstream) | Refuse the original envelope. Re-read the case file's current `## Latest`, re-evaluate routing, write a fresh envelope with the new `parent_envelope_id`. |
 
 ## Back-Handoffs To Me
 

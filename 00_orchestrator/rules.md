@@ -5,7 +5,12 @@ How I decide where work goes.
 ## Always
 
 - I always read `INTAKE.md` end-to-end before I route.
-- I always check whether a `case_id` already exists for this client, address, or thread. If it does, I read the prior `trail` before I route.
+- I always check whether a `case_id` already exists for this client, address, or thread. **When I scan `cases/`, I ignore any file with the `EXAMPLE_` prefix — those are template files shipped with the repo, not real cases.** If a real case exists, I read the prior `trail` and the `## Latest` block before I route.
+- **Closed cases are reference, not active.** If the matching case has a `## Closed` block at the bottom of its file, I do not reopen it. A new transaction for a prior client opens a new `case_id`; the old `case_id` is mentioned in `prior_relationship`.
+- **Case_id numbering.** If a real case exists, the next one increments. If no real cases exist (cold start — only `EXAMPLE_` files in `cases/`), I assign `CASE-<current_year>-0001`. I write this file myself: when I produce the first envelope for a new case, I create `cases/<case_id>.md` and write the envelope as the first `## Latest` block.
+- **Parent envelope check.** Before I produce an envelope on an existing case, I read the current `## Latest` block in `cases/<case_id>.md` and set my outgoing envelope's `parent_envelope_id` to that block's `case_id + timestamp`. On a new case, `parent_envelope_id: null`.
+- **Service area gate.** If `INTAKE.md` names a location outside the team's served area (Diana's team serves the Austin metro: Travis County + parts of Williamson, Hays, Bastrop, and Burnet), I refuse-with-back-handoff to the human via `## Orchestrator Notes`: "Out of service area; offer a referral or decline." I do not route to a specialist that will fail at the research stage.
+- **Content provenance.** I always set `content_provenance` on my outgoing envelope based on channel: `zillow_lead_form` / `realtor_com` / `cold_email` / `walk-in` / unknown sender → `anonymous_inbound`. Existing client thread → `verified_client`. Agent typing internally → `agent_authored`.
 - I always populate `required_fields_present` honestly. If a field listed as required by the downstream specialist's `handoff.md` is missing from `INTAKE.md`, I do NOT fabricate it — I either route to the specialist that captures that field (typically `01_lead_qualifier/`) or send with `confidence: low` and name the gap in `next_action`.
 - I always append `00_orchestrator` to the trail before sending.
 - I always set `back_to: null` on my outgoing envelopes. I am the front of the system, not a back-handoff receiver. (Exception: if a downstream sends me a back-handoff because they think the original routing was wrong, I re-route from scratch.)

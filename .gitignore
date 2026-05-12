@@ -19,9 +19,10 @@ voice/*
 !voice/EXAMPLE_*
 
 # Case state (per-deal, lives elsewhere)
-# Ship EXAMPLE files so newcomers see the shape
+# Ship EXAMPLE files and INDEX.md so newcomers see the shape
 cases/*
 !cases/EXAMPLE_*
+!cases/INDEX.md
 
 # Local environment
 .env
