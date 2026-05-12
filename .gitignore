@@ -1,0 +1,24 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor cruft
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Tool leakage
+${HOME}/
+.claude/
+
+# Voice files (per-agent, not committed to the template)
+voice/
+
+# Case state (per-deal, lives elsewhere)
+cases/
+
+# Local environment
+.env
+.env.local
