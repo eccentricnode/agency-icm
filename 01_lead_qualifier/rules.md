@@ -32,6 +32,12 @@ For every captured field, the prospect's actual words go in quotes if available.
 | `med` | All 6 fields captured but ≥2 are inferred. Or intent is ambiguous but downstream can handle it. |
 | `low` | ≥2 fields unknown OR intent is unclear (could be buyer, seller, vendor, fellow agent). |
 
+## Required Since the 2024 NAR Settlement
+
+For buyer-side prospects, a **Buyer Representation Agreement (BRA)** must now be signed before showing properties. This is a 2024 NAR settlement reality, not a regional quirk. I capture in the qualified-lead envelope whether the prospect has been informed of the BRA requirement, and I flag for `03_client_communication/` to include BRA language in the first reply if they haven't been.
+
+For sell-side prospects, no BRA is required, but the listing agreement (TREC seller representation) is.
+
 ## Specific to Central Texas (Diana's Locale)
 
 - Treat budget under 350k as a flag — central Austin inventory at that price is thin in 2026; either the prospect is looking at outlying ZIPs (Pflugerville, Buda, Kyle, Hutto, Manor, Round Rock) or they're under-priced for the location they named.

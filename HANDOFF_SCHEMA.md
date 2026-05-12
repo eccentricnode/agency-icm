@@ -12,6 +12,7 @@ Every handoff between two specialists carries one structured object. The fields 
 
 | Field | Required | Type | Purpose |
 |---|---|---|---|
+| `schema_version` | yes | string | This contract's version. Currently `"1.0"`. Receivers refuse envelopes with an unknown version. |
 | `case_id` | yes | string | Stable across the entire transaction. Pattern: `CASE-YYYY-NNNN` (e.g., `CASE-2026-0142`). Never reassigned. |
 | `from` | yes | string | The sending specialist folder name, exact (e.g., `00_orchestrator`). |
 | `to` | yes | string | The receiving specialist folder name, exact (e.g., `01_lead_qualifier`). |
@@ -20,7 +21,7 @@ Every handoff between two specialists carries one structured object. The fields 
 | `agent_on_deal` | yes | string | The human agent's name. Drives voice in `03_client_communication` and signatures elsewhere. |
 | `payload` | yes | object | Specialist-specific contents. Shape is defined in the sending specialist's `handoff.md`. |
 | `required_fields_present` | yes | array of strings | Names of the payload fields the sender confirms are populated. Receivers cross-check this against their own required list. |
-| `confidence` | yes | enum | `low` \| `med` \| `high`. Sender's own honest read of how complete the payload is. Affects whether the receiver proceeds, asks for clarification, or escalates. |
+| `confidence` | yes | enum: `low` \| `med` \| `high` | Sender's own honest read of how complete the payload is. Affects whether the receiver proceeds, asks for clarification, or escalates. |
 | `next_action` | yes | string | One sentence the sender recommends to the receiver. The receiver may override; this is guidance, not command. |
 | `trail` | yes | array of strings | Folder names this case has previously passed through, in order. Lets any specialist see the full path so far. |
 
@@ -30,6 +31,7 @@ Every handoff between two specialists carries one structured object. The fields 
 
 ```json
 {
+  "schema_version": "1.0",
   "case_id": "CASE-2026-0142",
   "from": "01_lead_qualifier",
   "to": "02_property_research",

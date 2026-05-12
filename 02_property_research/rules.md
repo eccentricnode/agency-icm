@@ -6,7 +6,7 @@ I treat sources at different levels of weight. When sources conflict, the higher
 
 | Level | Source | Use For |
 |---|---|---|
-| **Primary** | MLS closed-sale records (last 6 months) | Comparable sale prices |
+| **Primary** | ABoR / ACTRIS MLS closed-sale records (last 6 months) | Comparable sale prices |
 | **Primary** | TRAVIS CAD / county appraisal records | Tax basis, lot size, owner history |
 | **Primary** | TREC-form documents the team has access to | Contract status, contingency dates |
 | **Secondary** | TXR-supplied market reports (Texas Realtors) | Months-of-inventory, median DOM |
@@ -35,7 +35,7 @@ I write three short paragraphs:
 
 1. **What it is.** Housing stock, era, density, common buyer profile.
 2. **What's distinctive.** What makes this neighborhood different from adjacent ones. The 78704 vs 78745 vs 78745-the-Slaughter-Lane-corridor distinction is real and matters.
-3. **What an out-of-state buyer (or first-timer) would miss.** Traffic on weekends, school catchment quirks, common foundation issues for the era, flood plain coverage.
+3. **What an out-of-state buyer (or first-timer) would miss.** Traffic on weekends, school catchment quirks, common foundation issues for the era, floodplain coverage (Onion Creek, parts of South Austin), and **MUD / PID disclosures** for properties in the suburbs (Lakeway, Leander, Dripping Springs — routine but easy to miss).
 
 The third paragraph is the value-add. If I skip it I'm publishing a Zillow summary, not a research brief.
 

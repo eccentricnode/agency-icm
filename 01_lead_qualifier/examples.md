@@ -65,7 +65,7 @@ Gaps:
     "gaps": ["pre-approval status", "financing type", "min beds/baths explicit", "current housing situation"],
     "inference_notes": "Inferred buy from Zillow lead form context; inferred 78745 as likely also-acceptable based on similar school options and price point."
   },
-  "required_fields_present": ["intent", "budget", "timeline", "location", "constraints"],
+  "required_fields_present": ["prospect_name", "intent", "budget", "timeline", "location", "constraints", "prior_relationship", "gaps"],
   "confidence": "high",
   "next_action": "Draft first reply: confirm 1845 Westwood availability, propose a showing, ask about pre-approval and current housing, name 78704 + 78745 as likely zones given schools criterion.",
   "trail": ["00_orchestrator", "01_lead_qualifier"]
@@ -124,7 +124,7 @@ Gaps:
     "gaps": ["timeline specificity", "sell-and-stay vs sell-and-leave", "property condition since 2022", "his read on current value"],
     "inference_notes": "Buyer-side relationship from 2022 means warm rapport; Diana can be direct in first reply without losing tone."
   },
-  "required_fields_present": ["intent", "timeline", "location", "prior_relationship"],
+  "required_fields_present": ["prospect_name", "intent", "budget", "timeline", "location", "constraints", "prior_relationship", "gaps"],
   "confidence": "med",
   "next_action": "Draft warm short reply: acknowledge, propose 15-minute call this week, ask the timeline-tightening + sell-and-stay-vs-leave questions on the call rather than in text.",
   "trail": ["00_orchestrator", "01_lead_qualifier"]

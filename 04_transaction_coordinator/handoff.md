@@ -20,7 +20,7 @@ An envelope from `00_orchestrator/` on three kinds of triggers:
 
 ### If Required Fields Are Missing
 
-If `open_case` is missing `communication_date`, I back-handoff to `00_orchestrator/` with `routing_concern: "communication_date not provided; without it, contingency clocks cannot start. Confirm the date the final signature was communicated in writing — this is not always the signature date."` This single check has prevented more deadline misses than any other rule in this folder.
+If `open_case` is missing `communication_date`, I back-handoff to `00_orchestrator/` with `routing_concern: "communication_date not provided; without it, contingency clocks cannot start. Confirm the date the final signature was communicated in writing."`
 
 ## What I Produce
 
@@ -86,6 +86,6 @@ A typical transaction trail for me looks like:
 
 That round-trip is the architecture working as intended. The trail is the audit log. The audit log is the truth.
 
-## Why This File Is the Center of the System
+## Why Back-Handoffs Matter
 
-Five folders. Twenty handoff files (counting the four per folder × five). And exactly one of them — this one — defines the case for back-handoffs as the normal case. A multi-agent system that doesn't model back-handoffs is a pipeline pretending to be a team.
+A multi-agent system that doesn't model back-handoffs is a pipeline pretending to be a team. Real transactions loop — the coordinator catches a deadline slip and the communication specialist sends the heads-up; later the coordinator catches a signing-day need and the communication specialist coordinates the time. The shape of the trail will show those loops if the architecture allows them.

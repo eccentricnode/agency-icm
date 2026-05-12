@@ -13,8 +13,10 @@ Thumbs.db
 ${HOME}/
 .claude/
 
-# Voice files (per-agent, not committed to the template)
-voice/
+# Per-agent voice files (not committed to the template)
+# But ship the EXAMPLE_ file so newcomers see the shape
+voice/*
+!voice/EXAMPLE_*
 
 # Case state (per-deal, lives elsewhere)
 cases/

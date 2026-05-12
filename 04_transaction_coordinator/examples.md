@@ -1,6 +1,6 @@
 # Examples — Transaction Coordinator
 
-Two case states. The first is a routine status snapshot. The second is the back-handoff scenario — this is the move most submissions for this comp will miss.
+Two case states. The first is a routine status snapshot. The second is the back-handoff scenario — the move that turns the architecture from a one-way pipeline into a real team.
 
 ---
 
@@ -62,7 +62,7 @@ From `00_orchestrator/`. Diana asked: "What's the state of CASE-2026-0119 (Marcu
 
 ---
 
-## Example 2 — Back-Handoff Scenario (THE EUPHORIC-SURPRISE MOVE)
+## Example 2 — Back-Handoff Scenario
 
 ### Trigger
 
@@ -108,7 +108,7 @@ After Diana sends the draft, `03_` returns the message-sent confirmation to `04_
 
 The trail for this back-handoff chunk: `04_transaction_coordinator → 03_client_communication → (agent sends) → 04_transaction_coordinator`.
 
-That round-trip is the move that makes the system real. Most Comp #4 submissions will treat the architecture as a one-way pipeline. Real deals require this round-trip on every other transaction.
+That round-trip is the move that makes the system real. A one-way pipeline would have left Marcus to chase Diana for an update; the round-trip means Diana reaches him first with a calm plan. Real deals require this round-trip every other transaction.
 
 ---
 

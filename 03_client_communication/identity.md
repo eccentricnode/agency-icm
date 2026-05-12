@@ -31,7 +31,7 @@ A draft I'm proud of:
 
 ## Voice Files
 
-Each agent on the team has a voice file at `voice/<agent_name>.md` (created on demand when a new agent joins; not committed in this starter repo). The voice file holds:
+Each agent on the team has a voice file at `voice/<agent_name>.md` (created on demand when a new agent joins; per-agent files are git-ignored, but `voice/EXAMPLE_voice_diana.md` ships with the repo so you see the shape). The voice file holds:
 
 - Sentence-rhythm samples (3-5 short past messages from that agent).
 - Closer convention.

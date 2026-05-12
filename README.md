@@ -4,6 +4,18 @@
 
 ---
 
+## It's 11pm
+
+Your newest agent just texted: which document needs to go where for the inspection objection that's due Friday? You're putting the kids to bed. You answer, and as you type you realize this same exchange happened on Tuesday with a different deal and a different document.
+
+Your team is four people doing 70 transactions a year. Everyone is good at their part. Everyone is also the only one who knows their part. The systems live in your head and three Google Docs that nobody updates after Monday.
+
+You don't want another platform. You want a system you can teach your whole team to use in one week.
+
+This is that.
+
+---
+
 ## What You'll Get From This
 
 You'll get a working folder structure your team can drop into a Claude project (or any LLM context) on Monday morning. By Friday you'll know whether it fits how your team actually works. By the end of the quarter you'll be teaching the next hire from the same folder, not from your head.
@@ -21,7 +33,7 @@ A boutique real estate team — typically 3 to 6 people doing 50 to 100 transact
 → Re-doing property research from scratch every time
 → Getting 11pm Slacks from the newest hire about which document goes where
 
-If that sounds like your week, this is for you. The brief that started this build (real one) is in [`./BRIEF.md`](#) and it came from Diana, who runs a 4-person boutique team in Austin, Texas. You can adapt this for your locale — see the *Where to go next* section.
+If that sounds like your week, this is for you. The brief that started this build came from Diana, who runs a 4-person boutique team in Austin, Texas. You can adapt this for your locale — see the *Where to go next* section.
 
 ---
 
@@ -66,6 +78,20 @@ Three rules every specialist obeys. They sound abstract; they earn their keep on
 → **New sessions start clean.** Each specialist reads its own four files (`identity.md`, `rules.md`, `examples.md`, `handoff.md`) plus the envelope it received. No implicit context. No "you should know that…". The LLM running each step starts cold and finishes ready.
 
 → **Same quality for everyone.** Your newest agent and your most senior agent get the same artifact, because context lives in files not in heads. That's the test. If a stranger to your team cannot pick up a case from the trail and continue it, the architecture is failing.
+
+---
+
+## Why Not Just…
+
+A few honest objections, answered.
+
+→ **"Why not just use a SaaS CRM like Follow Up Boss?"** A CRM is fine for storing contacts and tracking pipelines. It's not where your team's *judgment* lives. The files in this repo encode the judgment — what to capture from a lead, what makes a research brief useful, how to draft in your voice. A CRM and this repo are not the same thing; you'll likely run both.
+
+→ **"Why not write actual code instead of markdown?"** Because the folders ARE the system. The LLM is the runtime. Code adds maintenance overhead with no leverage — every change has to be debugged, deployed, and re-taught to the team. Markdown is debuggable by reading.
+
+→ **"Why not have specialists work in parallel?"** Because real estate handoffs are sequential — you qualify before you research, you research before you reply, you sign a contract before you track deadlines. Parallel fanout is a real pattern, but for a 4-person team it adds coordination cost without proportional benefit. If your team grows past 15 people, revisit this.
+
+→ **"Why one envelope schema instead of bespoke contracts per pair?"** Because pairwise contracts drift. Five folders = ten directed pairs = ten chances for a spec to slip. One canonical envelope is one chance.
 
 ---
 
@@ -152,8 +178,8 @@ That's the whole thing. Five folders. One contract. One audit trail. No memory o
 Three things:
 
 1. **Clone this repo.** That's it. The folder structure IS the system.
-2. **Create a `voice/` folder** at the root and add a `<agent_name>.md` for each person on your team. Skip this and `03_client_communication/` will refuse to draft. The file is short — 5 past messages, a closer, a salutation, a stance on emojis.
-3. **Pick a place to keep case state.** Some teams use a `cases/` folder with one file per `case_id`. Some use Notion or a shared Google Doc. The repo doesn't force a choice — but each case needs *somewhere* to live so the trail is real. The orchestrator's `case_id` field assumes you have a place.
+2. **Create voice files for your team.** The `voice/` folder exists; `voice/EXAMPLE_voice_diana.md` ships with the repo so you see the shape. Add a `voice/<agent_name>.md` for each person on your team. Skip this and `03_client_communication/` will refuse to draft. The file is short — 5 past messages, a closer, a salutation, a stance on emojis. (Per-agent files are git-ignored so private writing samples don't end up in your repo.)
+3. **Pick a place to keep case state.** A `cases/` folder with one file per `case_id` is the simplest convention; Notion or a shared Google Doc also works. The repo doesn't force a choice, but each case needs *somewhere* to live so the trail is real. A convention worth committing to: `cases/CASE-YYYY-NNNN.md` with the latest envelope at the top and prior envelopes below. The orchestrator scans `cases/` to discover prior `case_id`s.
 
 That's everything. No software to install. No accounts to create.
 
@@ -197,9 +223,9 @@ Root files:
 
 ## Submission Writeup (Comp #4)
 
-> Built a 4-person real estate team's AI operating system as five Jake-pure ICM folders plus three root files (`README`, `INTAKE`, `HANDOFF_SCHEMA`). Every handoff carries a typed envelope keyed on a stable `case_id` with a `back_to` field that makes back-handoffs first-class — the move most submissions will miss, but real deals need it twice a transaction. One design decision: the schema lives in one root file referenced by every `handoff.md` so it can't drift. With another week I'd add a `voice/` directory with three real agent voice samples so the system arrives speaking like a team, not a template.
+> Built a 4-person real estate team's AI operating system as five ICM folders plus three root files (`README`, `INTAKE`, `HANDOFF_SCHEMA`). Every handoff carries a typed envelope with a stable `case_id` and a `back_to` field, so the transaction coordinator can hand a deadline-slip back to the communication specialist as a normal operation. One design decision: the envelope schema lives in one root file referenced by every `handoff.md` so it cannot drift. With another week I would ship a real `voice/` directory with three live agent samples and a `cases/` convention so case state lives somewhere named.
 
-(99 words.)
+(100 words.)
 
 ---
 

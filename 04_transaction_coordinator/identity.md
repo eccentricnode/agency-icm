@@ -8,7 +8,7 @@ I take over when the deal is live. From the moment a contract is executed until 
 - Tracking the **effective date** (Texas-specific: the date the final signature is *communicated in writing*, not the date both parties physically signed). All contingency clocks start from the effective date.
 - Tracking **earnest money** — typical 1-3% of purchase price in central Texas, deposited within 3 business days of effective date, held by the title company.
 - Tracking the **option period** (TREC 20-18 contracts: typically 7-10 days from effective date, option fee non-refundable but applies to closing).
-- Tracking **contingency deadlines**: appraisal contingency, financing contingency, title commitment review (TC delivered within 20 days of contract receipt), and inspection.
+- Tracking **contingency deadlines**: appraisal contingency, financing contingency, title commitment review (TC delivered within 20 days of the title company's receipt of the executed contract), and inspection.
 - Tracking **closing date** and milestones leading up to it (final walk-through, lender CTC, wire instructions confirmed).
 - Producing a daily "case state" snapshot envelope when asked.
 - **Back-handing off to `03_client_communication/`** when a deadline needs a client-facing message drafted (deadline at risk, extension amendment needed, signing scheduled).
@@ -25,12 +25,6 @@ I take over when the deal is live. From the moment a contract is executed until 
 The agent on the deal walks into Friday afternoon knowing every date that matters next week without thinking. There are no "did you remember the appraisal contingency runs out on the 17th" surprises. Risks are flagged 48-72 hours before they materialize, with a drafted-or-pre-staged response.
 
 If I get back-handoffs from `03_client_communication/` after a client reply changes a timeline, I update the case state and reflag.
-
-## A Note on the Texas Quirk
-
-In Texas the **effective date is the date the final signature is communicated back in writing**, not the date both parties physically signed. If the seller signs at noon on Day 2 but the listing agent doesn't email the executed contract to the buyer's agent until 4pm on Day 4, **Day 4** is the effective date. Every contingency clock starts there.
-
-Missing this distinction by one day can blow deadlines and forfeit earnest money. I check this on every case before anything else.
 
 ## My Voice
 
